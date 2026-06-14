@@ -16,6 +16,10 @@ It also shows you exactly where your tokens (and dollars) go.
 
 > No cloud. No account. No system certificate. One command, and your agent's traffic flows through a local proxy you control.
 
+> ✅ **Works with any agent that uses an API key** — Claude Code, OpenAI Codex, Cursor (own-key mode), and custom agent frameworks / CI pipelines. See [Supported agents](#supported-agents).
+>
+> ℹ️ **Not for flat-rate subscription mode** (Claude Pro, Cursor Pro). That traffic routes through the vendor's own cloud and can't be intercepted by *any* local tool — and a flat plan can't run up a metered bill anyway. Agent Black Box is for **metered, API-key usage**, which is exactly where runaway spend and leaked secrets actually happen.
+
 ---
 
 ## Why
@@ -70,6 +74,24 @@ curl -X POST http://localhost:4000/v1/messages \
 
 # → 403  "🛡️ blocked: it contained 1 secret(s) — AWS Access Key @ messages[0].content"
 ```
+
+---
+
+## Supported agents
+
+Agent Black Box intercepts traffic that flows through it — which means **any agent you point at it with an API key**. Subscription/Pro modes route through the vendor's cloud and **cannot** be intercepted (by this or any local tool).
+
+| Agent | How to connect | Works? |
+|---|---|---|
+| **Claude Code** (terminal CLI, API key) | `export ANTHROPIC_BASE_URL=http://localhost:4000` then run `claude` in that shell | ✅ |
+| **OpenAI Codex** (CLI) | `export OPENAI_BASE_URL=http://localhost:4000/v1` + `OPENAI_API_KEY` then run `codex` | ✅ |
+| **Cursor** (own-key mode) | Settings → Models → **Override OpenAI Base URL** = `http://localhost:4000/v1` + your OpenAI key | ✅ |
+| **Custom frameworks / CI** (LangChain, scripts, agents) | set the SDK's base URL to the proxy | ✅ |
+| **Claude Code / Cursor — subscription/Pro** | n/a — routes through the vendor cloud | ❌ not interceptable |
+
+> The env var only affects programs launched **from that same shell**. A desktop app opened by clicking won't inherit it — configure those via the app's own settings (e.g. `.claude/settings.json` `env` block) and fully restart the app.
+
+Run `blackbox doctor --ping` anytime to confirm your wiring.
 
 ---
 
