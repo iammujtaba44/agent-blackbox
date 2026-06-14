@@ -1,0 +1,63 @@
+{
+  "name": "agent-blackbox",
+  "version": "0.2.0",
+  "description": "A firewall for your AI coding agent. Blocks secrets from leaking into prompts and kills runaway token spend.",
+  "type": "module",
+  "bin": {
+    "blackbox": "./dist/cli.js"
+  },
+  "main": "./dist/server.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    ".blackbox.example.json"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli.ts start",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/cli.js start",
+    "test": "tsx --test test/*.test.ts",
+    "demo": "bash scripts/demo.sh",
+    "prepublishOnly": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iammujtaba44/agent-blackbox.git"
+  },
+  "bugs": {
+    "url": "https://github.com/iammujtaba44/agent-blackbox/issues"
+  },
+  "homepage": "https://github.com/iammujtaba44/agent-blackbox#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "claude",
+    "proxy",
+    "security",
+    "dlp",
+    "secrets",
+    "token",
+    "cost",
+    "firewall",
+    "mcp",
+    "claude-code",
+    "cursor"
+  ],
+  "author": "Muhammad Mujtaba",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "kleur": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}
