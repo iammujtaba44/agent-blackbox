@@ -12,9 +12,7 @@
 
 It also shows you exactly where your tokens (and dollars) go.
 
-<!-- LAUNCH TODO: record the demo with `npm run demo`, save it to docs/demo.gif,
-     then uncomment the line below so it shows at the top of the README. -->
-<!-- <p align="center"><img src="docs/demo.gif" alt="Blocking a leaked secret and tracking token cost" width="720"></p> -->
+<p align="center"><img src="docs/demo.gif" alt="Blocking a leaked secret and tracking token cost" width="720"></p>
 
 > No cloud. No account. No system certificate. One command, and your agent's traffic flows through a local proxy you control.
 
